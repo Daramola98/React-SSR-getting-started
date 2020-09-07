@@ -1,6 +1,8 @@
 const path = require('path');
+const merge = require('webpack-merge');
+const baseConfig = require('./webpack.base');
 
-module.exports = {
+const config = {
   // Tell webpack the environment we are bundling for
   target: 'node',
   // Tell webpack where to begin the bundling i.e the root of our application
@@ -10,15 +12,6 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
   },
-  // Tell webpack to run babel on all our files
-  module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      options: {
-        presets: ['react', 'stage-0', ['env', { targets: { browsers: ['last 2 versions'] } }]],
-      },
-    }],
-  },
 };
+
+module.exports = merge(baseConfig, config);
