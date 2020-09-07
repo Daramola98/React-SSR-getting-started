@@ -6,9 +6,20 @@ import Home from './client/components/Home';
 
 const app = express();
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   const content = renderToString(<Home />);
-  return res.send(content);
+  const html = `
+    <html>
+      <head></head>
+      <body>
+        ${content}
+        <script src="bundle.js"></script>
+      </body>
+    </html>
+  `;
+  return res.send(html);
 });
 
 app.listen(3000, () => {
