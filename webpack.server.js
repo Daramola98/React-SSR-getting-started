@@ -13,7 +13,7 @@ module.exports = {
   // Tell webpack to run babel on all our files
   module: {
     rules: [{
-      test: /\.js?$/,
+      test: /\.(js|jsx)$/,
       loader: 'babel-loader',
       exclude: /node_modules/,
       options: {
