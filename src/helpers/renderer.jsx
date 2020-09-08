@@ -1,10 +1,16 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import Home from '../client/components/Home.jsx';
+import { StaticRouter } from 'react-router-dom';
 
-export default () => {
-  const content = renderToString(<Home />);
+import Routes from '../client/routes.jsx';
+
+export default (req) => {
+  const content = renderToString(
+    <StaticRouter location={req.path} context={{}}>
+      <Routes />
+    </StaticRouter>,
+  );
   return `
   <html>
     <head></head>
