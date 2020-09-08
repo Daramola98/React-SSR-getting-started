@@ -1,8 +1,14 @@
+/* eslint-disable no-undef */
 /* eslint-disable import/extensions */
 // Starting point for out client side bundle
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from './components/Home.jsx';
+import { BrowserRouter } from 'react-router-dom';
 
-// eslint-disable-next-line no-undef
-ReactDOM.hydrate(<Home />, document.querySelector('#root'));
+import Routes from './routes.jsx';
+
+ReactDOM.hydrate((
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>),
+document.querySelector('#root'));
